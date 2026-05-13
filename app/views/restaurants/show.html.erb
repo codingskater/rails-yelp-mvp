@@ -1,0 +1,27 @@
+<div class="container">
+<h1><%= @restaurant.name %></h1>
+<ul>
+  <li><%= @restaurant.address %></li>
+  <li><% if @restaurant.phone_number? %>
+        <%= @restaurant.phone_number %>
+      <% else %>
+        No phone number</li>
+      <% end %>
+  <li><%= @restaurant.category.capitalize %></li>
+</ul>
+
+<h2>Reviews</h2>
+  <% if @restaurant.reviews.any? %>
+    <% @restaurant.reviews.each do |review| %>
+      <li>
+          <%= review.rating %>
+          <%= review.content %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>No reviews yet</li>
+  <% end %>
+  <%= link_to "Submit a Review here!", new_restaurant_review_path(@restaurant) %>
+
+<%= link_to "Index", restaurants_path %>
+</div>
